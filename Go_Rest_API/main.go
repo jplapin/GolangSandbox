@@ -60,7 +60,20 @@ func createBook(w http.ResponseWriter, r *http.Request) {
 
 //Update a book
 func updateBook(w http.ResponseWriter, r *http.Request) {
-
+	w.Header().Set("Content-Type", "application/json")
+	params := mux.Vars(r) //get params
+	//loops through books to find the id
+	for index, item := range books {
+		if item.ID == params["id"] {
+			books = append(books[:index], books[index+1:]...)
+			var book Book
+			_ = json.NewDecoder(r.Body).Decode(&book)
+			book.ID = strconv.Itoa(rand.Intn(1000000)) //Mock ID - NOT SAFE - Just for example
+			json.NewEncoder(w).Encode(book)
+			return
+		}
+	}
+	json.NewEncoder(w).Encode(books)
 }
 
 //Delete a books
