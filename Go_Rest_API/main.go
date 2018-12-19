@@ -23,7 +23,7 @@ type Book struct {
 type Author struct {
 	Firstname string `json:"firstname"`
 	Lastname  string `json:"lastname"`
-	age       int    `json:"age"`
+	Age       int    `json:"age"`
 }
 
 //Init books var as a slice (array with variable size) book struct
@@ -96,9 +96,9 @@ func main() {
 
 	//Mock data @todo - Database implementation
 	books = append(books, Book{ID: "1", Isbn: "23421364", Title: "Lord of The Rings",
-		Author: &Author{Firstname: "J.R.", Lastname: "Tolkien", age: 56}, Year: 1976})
+		Author: &Author{Firstname: "J.R.", Lastname: "Tolkien", Age: 56}, Year: 1976})
 	books = append(books, Book{ID: "2", Isbn: "67856433", Title: "Blade Runner",
-		Author: &Author{Firstname: "Philip K.", Lastname: "Dick", age: 65}, Year: 1987})
+		Author: &Author{Firstname: "Philip K.", Lastname: "Dick", Age: 65}, Year: 1987})
 
 	//Route Handlers /Endpoints
 	r.HandleFunc("/api/books", getBooks).Methods("GET")
